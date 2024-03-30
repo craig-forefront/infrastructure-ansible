@@ -31,6 +31,7 @@
     - "{{ zookeeper_working_dir }}"
 
 - name: Rertieve and unarchive ZooKeeper
+  become: true
   ansible.builtin.unarchive:
     src: "{{ zookeeper_binary_url }}"
     dest: "{{ zookeeper_base_dir }}"
@@ -40,7 +41,7 @@
     remote_src: yes
 
 - name: Copy out ZooKeeper conf file
-  become: "{{ zookeeper_user }}"
+  become: true
   ansible.builtin.template:
     src: /templates/zookeeper.conf.j2
     dest: "{{ zookeeper_conf_dir }}/conf/zookeeper.conf"
