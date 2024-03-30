@@ -17,7 +17,7 @@
 - name: Ensure ZooKeeper directories exist
   file:
     path: "{{ item }}"
-    owner: "{{ zookper_user }}"
+    owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
     state: directory
     recurse: no
