@@ -15,6 +15,7 @@
     shell: /bin/bash
 
 - name: Ensure ZooKeeper directories exist
+  become: true
   file:
     path: "{{ item }}"
     owner: "{{ zookeeper_user }}"
