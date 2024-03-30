@@ -8,7 +8,7 @@ zookeeper_binary_url: "https://dlcdn.apache.org/zookeeper/zookeeper-3.8.4/apache
 zookeeper_base_dir: "/opt/zookeeper"
 zookeeper_log_dir: "/var/log/zookeeper"
 zookeeper_conf_dir: "/etc/zookeeper"
-zookeper_working_dir: "/var/lib/zookeeper"
+zookeeper_working_dir: "/var/lib/zookeeper"
 
 # Files
 zookeeper_conf: "{{ ansible_env.HOME }}/zookeeper.conf"
