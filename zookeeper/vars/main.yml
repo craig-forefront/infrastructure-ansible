@@ -1,0 +1,26 @@
+---
+# vars file for zookeeper
+
+# Zookeeper Binary URL
+zookeeper_binary_url: "https://dlcdn.apache.org/zookeeper/zookeeper-3.8.4/apache-zookeeper-3.8.4-bin.tar.gz"
+
+# Directories
+zookeeper_base_dir: "/opt/zookeeper"
+zookeeper_log_dir: "/var/log/zookeeper"
+zookeeper_conf_dir: "/etc/zookeeper"
+zookeper_working_dir: "/var/lib/zookeeper"
+
+# Files
+zookeeper_conf: "{{ ansible_env.HOME }}/zookeeper.conf"
+zokeeper_service: "{{ ansible_env.HOME }}/zookeeper.service"
+
+# ZooKeeper User/Group
+zookeeper_user: "zookeeper"
+zookeeper_group: "zookeeper"
+
+# ZooKeeper conf settings
+zookeeper_client_port: 2181
+
+# Required packages 
+install_packages:
+  - java-11-amazon-corretto

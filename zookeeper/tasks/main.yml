@@ -1,0 +1,56 @@
+---
+# tasks file for zookeeper
+- name: Install required packages
+  package:
+    name: "{{ install_packages }}"
+    state: present
+  become: true
+  tags:
+    - install_packages
+
+- name: Ensure user zookeeper exists
+  ansible.builtin.user:
+    name: "{{ zookeeper_user }}"
+    shell: /bin/bash
+
+- name: Rertieve and unarchive ZooKeeper
+  ansible.builtin.unarchive:
+    src: "{{ zookeeper_binary_url }}"
+    dest: "{{ zookeeper_base_dir }}"
+    mode: '0755'
+    owner: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+    remote_src: yes
+
+- name: Ensure ZooKeeper directories exist
+  file:
+    path: "{{ item }}"
+    owner: "{{ zookper_user }}"
+    group: "{{ zookeeper_group }}"
+    state: directory
+    recurse: no
+    mode: 0755
+  loop:
+    - "{{ zookeeper_base_dir }}"
+    - "{{ zookeeper_conf_dir }}"
+    - "{{ zookeeper_conf_dir }}/conf"
+    - "{{ zookeeper_log_dir }}"
+    - "{{ zookeeper_working_dir }}"
+
+- name: Copy out ZooKeeper service file
+  ansible.builtin.template:
+    src: /templates/zookeeper.service
+    dest: /usr/lib/systemd/system/zookeeper.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Reload systemd since we just added a new ZooKeeper service
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: Enable and start the ZooKeeper service
+  ansible.builtin.systemd_service:
+    state: started
+    name: zookeeper
+    enabled: true
