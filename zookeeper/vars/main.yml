@@ -5,6 +5,7 @@
 zookeeper_binary_url: "https://dlcdn.apache.org/zookeeper/zookeeper-3.8.4/apache-zookeeper-3.8.4-bin.tar.gz"
 
 # Directories
+zookeeper_unarchive_dir: "/opt"
 zookeeper_base_dir: "/opt/zookeeper"
 zookeeper_log_dir: "/var/log/zookeeper"
 zookeeper_conf_dir: "/etc/zookeeper"

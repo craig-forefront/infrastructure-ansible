@@ -24,7 +24,6 @@
     recurse: no
     mode: 0755
   loop:
-    - "{{ zookeeper_base_dir }}"
     - "{{ zookeeper_conf_dir }}"
     - "{{ zookeeper_conf_dir }}/conf"
     - "{{ zookeeper_log_dir }}"
@@ -34,7 +33,7 @@
   become: true
   ansible.builtin.unarchive:
     src: "{{ zookeeper_binary_url }}"
-    dest: "{{ zookeeper_base_dir }}"
+    dest: "{{ zookeeper_unarchive_dir }}"
     mode: '0755'
     list_files: true
     owner: "{{ zookeeper_user }}"
