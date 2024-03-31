@@ -50,7 +50,7 @@
     mode: '0644'
 
 - name: Copy out ZooKeeper log file
-  become: "{{ zookeeper_user }}"
+  become: true
   ansible.builtin.template:
     src: logback.xml.j2
     dest: "{{ zookeeper_conf_dir }}/conf/logback.xml"
