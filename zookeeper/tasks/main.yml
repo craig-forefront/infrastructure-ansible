@@ -43,7 +43,7 @@
 - name: Copy out ZooKeeper conf file
   become: true
   ansible.builtin.template:
-    src: /templates/zookeeper.conf.j2
+    src: zookeeper.conf.j2
     dest: "{{ zookeeper_conf_dir }}/conf/zookeeper.conf"
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
@@ -52,7 +52,7 @@
 - name: Copy out ZooKeeper log file
   become: "{{ zookeeper_user }}"
   ansible.builtin.template:
-    src: /templates/logback.xml.j2
+    src: logback.xml.j2
     dest: "{{ zookeeper_conf_dir }}/conf/logback.xml"
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
@@ -61,7 +61,7 @@
 - name: Copy out ZooKeeper service file
   become: true
   ansible.builtin.template:
-    src: /templates/zookeeper.service
+    src: zookeeper.service
     dest: /usr/lib/systemd/system/zookeeper.service
     owner: root
     group: root
