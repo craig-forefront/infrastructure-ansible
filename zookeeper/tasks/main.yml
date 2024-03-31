@@ -43,7 +43,7 @@
 
 - name: Create a symbolic link for ZooKeeper directory
   ansible.builtin.file:
-    src: "{{ zoo_unarchive.dest }}"
+    src: "{{ zoo_unarchive.files[0] }}"
     dest: "{{ zookeeper_base_dir }}"
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
