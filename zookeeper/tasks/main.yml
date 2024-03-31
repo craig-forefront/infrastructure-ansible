@@ -45,35 +45,17 @@
 - name: Copy out ZooKeeper conf file
   become: true
   ansible.builtin.template:
-    src: zookeeper.conf.j2
+    src: "zoo.cfg.j2"
     dest: "{{ zookeeper_config_file }}"
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
     mode: '0644'
 
-- name: Copy out ZooKeeper env file
-  become: true
-  ansible.builtin.template:
-    src: zookeeper-env.sh.j2
-    dest: "{{ zookeeper_conf_dir }}/conf/zookeeper-env.sh"
-    owner: "{{ zookeeper_user }}"
-    group: "{{ zookeeper_group }}"
-    mode: '0644'
-
-- name: Copy out ZooKeeper env var file
+- name: Copy out ZooKeeper env-var file
   become: true
   ansible.builtin.template:
     src: zookeeper-env-vars.j2
     dest: "{{ zookeeper_conf_dir }}/conf/zookeeper-env-var"
-    owner: "{{ zookeeper_user }}"
-    group: "{{ zookeeper_group }}"
-    mode: '0644'
-
-- name: Copy out ZooKeeper log file
-  become: true
-  ansible.builtin.template:
-    src: logback.xml.j2
-    dest: "{{ zookeeper_conf_dir }}/conf/logback.xml"
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
     mode: '0644'
