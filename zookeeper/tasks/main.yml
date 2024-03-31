@@ -61,7 +61,7 @@
 - name: Copy out ZooKeeper service file
   become: true
   ansible.builtin.template:
-    src: zookeeper.service
+    src: zookeeper.service.j2
     dest: /usr/lib/systemd/system/zookeeper.service
     owner: root
     group: root
