@@ -6,7 +6,7 @@ After=network.target
 
 [Service]
 Type=forking
-EnvironmentFile={{ zookeepr_var_file }}
+EnvironmentFile={{ zookeeper_var_file }}
 User={{ zookeeper_user }}
 Group={{ zookeeper_group }}
 ExecStart={{ zookeeper_base_dir }}/bin/zkServer.sh start
