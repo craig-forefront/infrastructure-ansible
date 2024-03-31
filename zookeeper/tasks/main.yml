@@ -36,6 +36,7 @@
     src: "{{ zookeeper_binary_url }}"
     dest: "{{ zookeeper_base_dir }}"
     mode: '0755'
+    list_files: true
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
     remote_src: yes
