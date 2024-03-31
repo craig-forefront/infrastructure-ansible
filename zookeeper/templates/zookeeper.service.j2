@@ -6,11 +6,12 @@ After=network.target
 
 [Service]
 Type=forking
+EnvironmentFile={{ zookeepr_var_file }}
 User={{ zookeeper_user }}
 Group={{ zookeeper_group }}
-ExecStart={{ zookeeper_base_dir }}/bin/zkServer.sh start {{ zookeeper_conf_dir }}/conf/zookeeper.conf
-ExecStop={{ zookeeper_base_dir }}/bin/zkServer.sh stop {{ zookeeper_conf_dir }}/conf/zookeeper.conf
-ExecReload={{ zookeeper_base_dir }}/bin/zkServer.sh restart {{ zookeeper_conf_dir }}/conf/zookeeper.conf
+ExecStart={{ zookeeper_base_dir }}/bin/zkServer.sh start
+ExecStop={{ zookeeper_base_dir }}/bin/zkServer.sh stop
+ExecReload={{ zookeeper_base_dir }}/bin/zkServer.sh restart
 WorkingDirectory={{ zookeeper_working_dir }}
 
 [Install]
