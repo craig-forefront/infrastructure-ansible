@@ -11,9 +11,9 @@ Environment="ZOOKEEPER_PID_DIR={{ zookeeper_pid_dir }}"
 Environment="ZOOPIDFILE={{ zookeeper_pid_dir }}/zookeeper.pid"
 User={{ zookeeper_user }}
 Group={{ zookeeper_group }}
-ExecStart={{ zookeeper_base_dir }}/bin/zkServer.sh --conf {{ zookeeper_conf_dir }}/conf start {{ zookeeper_config_file }}
-ExecStop={{ zookeeper_base_dir }}/bin/zkServer.sh --conf {{ zookeeper_conf_dir }}/conf stop {{ zookeeper_config_file }}
-ExecReload={{ zookeeper_base_dir }}/bin/zkServer.sh --conf {{ zookeeper_conf_dir }}/conf restart {{ zookeeper_config_file }}
+ExecStart={{ zookeeper_base_dir }}/bin/zkServer.sh --config {{ zookeeper_conf_dir }}/conf start {{ zookeeper_config_file }}
+ExecStop={{ zookeeper_base_dir }}/bin/zkServer.sh --config {{ zookeeper_conf_dir }}/conf stop {{ zookeeper_config_file }}
+ExecReload={{ zookeeper_base_dir }}/bin/zkServer.sh --config {{ zookeeper_conf_dir }}/conf restart {{ zookeeper_config_file }}
 WorkingDirectory={{ zookeeper_working_dir }}
 
 [Install]
