@@ -42,20 +42,11 @@
     group: "{{ zookeeper_group }}"
     remote_src: yes
 
-- name: Copy out ZooKeeper conf file
+- name: Copy out ZooKeeper cfg file
   become: true
   ansible.builtin.template:
     src: "zoo.cfg.j2"
     dest: "{{ zookeeper_config_file }}"
-    owner: "{{ zookeeper_user }}"
-    group: "{{ zookeeper_group }}"
-    mode: '0644'
-
-- name: Copy out ZooKeeper env-var file
-  become: true
-  ansible.builtin.template:
-    src: zookeeper-env-vars.j2
-    dest: "{{ zookeeper_conf_dir }}/conf/zookeeper-env-vars"
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
     mode: '0644'
