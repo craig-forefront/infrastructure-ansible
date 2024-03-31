@@ -39,11 +39,11 @@
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
     remote_src: yes
-    register: zoo_directory
+  register: zoo_unarchive
 
 - name: Create a symbolic link for ZooKeeper directory
   ansible.builtin.file:
-    src: "{{ zoo_directory.dest }}"
+    src: "{{ zoo_unarchive.dest }}"
     dest: "{{ zookeeper_base_dir }}"
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
