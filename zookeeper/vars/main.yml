@@ -15,7 +15,7 @@ zookeeper_pid_dir: "/var/run/zookeeper"
 #zookeeper_var_file: "{{ zookeeper_conf_dir }}/conf/zookeeper-env-vars"
 #zookeeper_conf: "{{ ansible_env.HOME }}/zookeeper.conf"
 #zokeeper_service: "{{ ansible_env.HOME }}/zookeeper.service"
-#zookeeper_config_file: "{{ ansible_env.HOME }}/"
+zookeeper_config_file: "{{ zookeeper_conf_dir }}/conf/zookeeper.conf"
 
 # ZooKeeper User/Group
 zookeeper_user: "zookeeper"

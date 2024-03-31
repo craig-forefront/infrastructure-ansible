@@ -45,7 +45,7 @@
   become: true
   ansible.builtin.template:
     src: zookeeper.conf.j2
-    dest: "{{ zookeeper_conf_dir }}/conf/zookeeper.conf"
+    dest: "{{ zookeeper_config_file }}"
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
     mode: '0644'
