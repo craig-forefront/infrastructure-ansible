@@ -42,6 +42,7 @@
   register: zoo_unarchive
 
 - name: Create a symbolic link for ZooKeeper directory
+  become: true
   ansible.builtin.file:
     src: "{{ zoo_unarchive.files[0] }}"
     dest: "{{ zookeeper_base_dir }}"
