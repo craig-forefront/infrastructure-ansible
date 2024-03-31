@@ -41,6 +41,10 @@
     remote_src: yes
   register: zoo_unarchive
 
+- name: Debug print
+  debug: 
+  msg: "{{ zoo_unarchive }}"
+
 - name: Create a symbolic link for ZooKeeper directory
   become: true
   ansible.builtin.file:
