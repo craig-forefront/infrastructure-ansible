@@ -42,6 +42,12 @@
     group: "{{ zookeeper_group }}"
     remote_src: yes
 
+- name: Remove base conf to avoid confusion
+  become: true
+  ansible.builtin.file:
+    path: "{{ zookeeper_base_dir }}/conf"
+    state: absent
+    
 - name: Copy out ZooKeeper cfg file
   become: true
   ansible.builtin.template:
