@@ -56,6 +56,15 @@
     group: "{{ zookeeper_group }}"
     mode: '0644'
 
+- name: Copy logback.xml to ZooKeeper conf directory
+  become: true
+  ansible.builtin.template:
+    src: "logback.xml"
+    dest: "{{ zookeeper_conf_dir }}/conf"
+    owner: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+    mode: '0644'
+
 - name: Copy ZooKeeper myid file to data directory
   become: true
   ansible.builtin.template:
