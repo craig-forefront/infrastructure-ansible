@@ -57,6 +57,15 @@
     group: "{{ zookeeper_group }}"
     mode: '0644'
 
+- name: Copy ZooKeeper myid file to data directory
+  become: true
+  ansible.builtin.template:
+    src: "myid.j2"
+    dest: "{{ zookeeper_working_dir }}/myid"
+    owner: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+    mode: '0644'
+
 - name: Copy out ZooKeeper service file
   become: true
   ansible.builtin.template:
