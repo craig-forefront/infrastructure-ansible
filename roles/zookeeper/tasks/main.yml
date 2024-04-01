@@ -29,7 +29,6 @@
     - "{{ zookeeper_conf_dir }}/conf"
     - "{{ zookeeper_log_dir }}"
     - "{{ zookeeper_working_dir }}"
-    - "{{ zookeeper_pid_dir }}"
 
 - name: Rertieve and unarchive ZooKeeper
   become: true

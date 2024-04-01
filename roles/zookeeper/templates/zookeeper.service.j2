@@ -6,6 +6,7 @@ After=network.target
 
 [Service]
 Type=forking
+RuntimeDirectory=zookeeper
 Environment="ZOO_LOG_DIR={{ zookeeper_log_dir }}"
 Environment="ZOOPIDFILE={{ zookeeper_pid_dir }}/zookeeper.pid"
 User={{ zookeeper_user }}
