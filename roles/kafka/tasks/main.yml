@@ -28,7 +28,7 @@
     - "{{ kafka_conf_dir }}"
     - "{{ kafka_conf_dir }}/conf"
     - "{{ kafka_log_dir }}"
-    - "{{ kafka_working_dir }}"
+    - "{{ kafka_data_dir }}"
 
 - name: rertieve and unarchive kafka
   become: true
