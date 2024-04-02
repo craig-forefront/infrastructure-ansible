@@ -1,2 +1,22 @@
 ---
 # vars file for kafka
+
+# kafka binary url
+kafka_binary_url: "https://downloads.apache.org/kafka/3.7.0/kafka_2.12-3.7.0.tgz"
+
+# Directories
+kafka_base_dir: "/opt/kafka"
+kafka_log_dir: "/var/log/kafka"
+kafka_conf_dir: "/etc/kafka"
+kafka_working_dir: "/var/lib/kafka"
+kafka_pid_dir: "/var/run/kafka"
+
+# files
+
+# kafa user/group
+kafka_user: "zookeeper"
+kafka_group: "zookeeper"
+
+# required packages 
+install_packages:
+  - java-11-amazon-corretto

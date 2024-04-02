@@ -1,2 +1,54 @@
 ---
 # tasks file for kafka
+- name: install required packages
+  become: true
+  package:
+    name: "{{ install_packages }}"
+    state: present
+  tags:
+    - install_packages
+
+- name: ensure user kafka exists
+  become: true
+  ansible.builtin.user:
+    name: "{{ kafka_user }}"
+    shell: /bin/bash
+    
+- name: ensure kafka directories exist
+  become: true
+  file:
+    path: "{{ item }}"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    state: directory
+    recurse: no
+    mode: 0755
+  loop:
+    - "{{ kafka_base_dir }}"
+    - "{{ kafka_conf_dir }}"
+    - "{{ kafka_conf_dir }}/conf"
+    - "{{ kafka_log_dir }}"
+    - "{{ kafka_working_dir }}"
+
+- name: rertieve and unarchive kafka
+  become: true
+  ansible.builtin.unarchive:
+    src: "{{ kafka_binary_url }}"
+    dest: "{{ kafka_base_dir }}"
+    mode: '0755'
+    extra_opts: ['--strip-components=1', '--show-stored-names']
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    remote_src: yes
+
+# - name: reload systemd since we just added a new kafka service
+#   become: true
+#   ansible.builtin.systemd_service:
+#     daemon_reload: true
+
+# - name: enable and start the kafka service
+#   become: true
+#   ansible.builtin.systemd_service:
+#     state: started
+#     name: kafka
+#     enabled: true
