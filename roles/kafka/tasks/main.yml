@@ -41,6 +41,15 @@
     group: "{{ kafka_group }}"
     remote_src: yes
 
+- name: Copy kafka server.properties file to conf directory
+  become: true
+  ansible.builtin.template:
+    src: "server.properties.j2"
+    dest: "{{ kafka_conf_dir }}/conf"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    mode: '0644'
+
 # - name: reload systemd since we just added a new kafka service
 #   become: true
 #   ansible.builtin.systemd_service:
