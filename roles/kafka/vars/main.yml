@@ -8,7 +8,7 @@ kafka_binary_url: "https://downloads.apache.org/kafka/3.7.0/kafka_2.12-3.7.0.tgz
 kafka_base_dir: "/opt/kafka"
 kafka_log_dir: "/var/log/kafka"
 kafka_conf_dir: "/etc/kafka"
-kafka_working_dir: "/var/lib/kafka"
+kafka_data_dir: "/var/lib/kafka"
 kafka_pid_dir: "/var/run/kafka"
 
 # files
