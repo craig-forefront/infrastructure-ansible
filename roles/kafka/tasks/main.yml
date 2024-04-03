@@ -45,7 +45,7 @@
   become: true
   ansible.builtin.template:
     src: "server.properties.j2"
-    dest: "{{ kafka_conf_dir }}/conf"
+    dest: "{{ kafka_conf_dir }}/conf/server.properties"
     owner: "{{ kafka_user }}"
     group: "{{ kafka_group }}"
     mode: '0644'
