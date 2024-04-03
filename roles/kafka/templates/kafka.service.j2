@@ -8,6 +8,7 @@ After=network.target
 Type=simple
 
 Environment='KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:{{ kafka_log4j_prop_file }}"'
+Environment="KAFKA_HEAP_OPTS="-Xmx2G -Xms2G"
 User={{ kafka_user }}
 Group={{ kafka_group }}
 ExecStart={{ kafka_base_dir }}/bin/kafka-server-start.sh {{ kafka_config_file }}
