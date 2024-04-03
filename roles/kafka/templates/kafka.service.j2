@@ -1,0 +1,17 @@
+[Unit]
+Description=kafka Service
+Documentation=http://kafka.apache.org
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+
+Environment='KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:{{ kafka_log4j_prop_file }}"'
+User={{ kafka_user }}
+Group={{ kafka_group }}
+ExecStart={{ kafka_base_dir }}/bin/kafka-server-start.sh {{ kafka_config_file }}
+ExecStop={{ kafka_base_dir }}/bin/kafka-server-start.sh {{ kafka_config_file }}
+
+[Install]
+WantedBy=default.target

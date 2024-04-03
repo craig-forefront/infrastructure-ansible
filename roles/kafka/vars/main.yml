@@ -12,6 +12,10 @@ kafka_data_dir: "/var/lib/kafka"
 kafka_pid_dir: "/var/run/kafka"
 
 # files
+kafka_config_file: "{{ kafka_conf_dir }}/conf/server.properties"
+kafka_pid_file: "{{ kafka_pid_dir }}/kafka.pid"
+kafka_log4j_prop_file: "{{ kafka_conf_dir }}/conf/log4j.properties"
+kafka_service_file: "/usr/lib/systemd/system/kafka.service"
 
 # kafa user/group
 kafka_user: "zookeeper"

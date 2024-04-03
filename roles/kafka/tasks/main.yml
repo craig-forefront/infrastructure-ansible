@@ -41,7 +41,7 @@
     group: "{{ kafka_group }}"
     remote_src: yes
 
-- name: Copy kafka server.properties file to conf directory
+- name: copy kafka server.properties file to conf directory
   become: true
   ansible.builtin.template:
     src: "server.properties.j2"
@@ -50,14 +50,32 @@
     group: "{{ kafka_group }}"
     mode: '0644'
 
-# - name: reload systemd since we just added a new kafka service
-#   become: true
-#   ansible.builtin.systemd_service:
-#     daemon_reload: true
+- name: copy kafka log4j.properties file to conf directory
+  become: true
+  ansible.builtin.template:
+    src: "log4j.properties.j2"
+    dest: "{{ kafka_log4j_prop_file }}"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    mode: '0644'
 
-# - name: enable and start the kafka service
-#   become: true
-#   ansible.builtin.systemd_service:
-#     state: started
-#     name: kafka
-#     enabled: true
+- name: copy kafka service defenition file to system directory
+  become: true
+  ansible.builtin.template:
+    src: "kafka.service.j2"
+    dest: "{{ kafka_service_file }}"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    mode: '0644'
+
+- name: reload systemd since we just added a new kafka service
+  become: true
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: enable and start the kafka service
+  become: true
+  ansible.builtin.systemd_service:
+    state: started
+    name: kafka
+    enabled: true
