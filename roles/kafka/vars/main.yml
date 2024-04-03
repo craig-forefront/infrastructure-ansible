@@ -18,8 +18,8 @@ kafka_log4j_prop_file: "{{ kafka_conf_dir }}/conf/log4j.properties"
 kafka_service_file: "/usr/lib/systemd/system/kafka.service"
 
 # kafa user/group
-kafka_user: "zookeeper"
-kafka_group: "zookeeper"
+kafka_user: "kafka"
+kafka_group: "kafka"
 
 # required packages 
 install_packages:
