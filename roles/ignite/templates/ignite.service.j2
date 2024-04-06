@@ -1,0 +1,17 @@
+[Unit]
+Description=ignite Service
+Documentation=https://ignite.apache.org/
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+Environment=IGNITE_HOME={{ ignite_base_dir }}
+Environment=IGNITE_LOG_DIR={{ ignite_log_dir }}
+User={{ ignite_user }}
+Group={{ ignite_group }}
+ExecStart={{ ignite_base_dir }}/bin/ignite.sh {{ ignite_config_file }}
+KillSignal=SIGINT
+
+[Install]
+WantedBy=default.target

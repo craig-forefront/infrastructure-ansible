@@ -1,2 +1,100 @@
 ---
 # tasks file for ignite
+- name: install required packages
+  become: true
+  package:
+    name: "{{ install_packages }}"
+    state: present
+  tags:
+    - install_packages
+
+- name: ensure user ignite exists
+  become: true
+  ansible.builtin.user:
+    name: "{{ ignite_user }}"
+    shell: /bin/bash
+    
+- name: ensure ignite directories exist
+  become: true
+  file:
+    path: "{{ item }}"
+    owner: "{{ ignite_user }}"
+    group: "{{ ignite_group }}"
+    state: directory
+    recurse: no
+    mode: 0755
+  loop:
+    - ignite_base_dir
+    - ignite_snapshots_dir
+    - ignite_work_dir
+    - ignite_log_dir
+    - ignite_conf_dir
+    - ignite_data_dir
+    - ignite_pid_dir
+    - ignite_optional_libs
+
+- name: rertieve and unarchive ignite
+  become: true
+  ansible.builtin.unarchive:
+    src: "{{ ignite_binary_url }}"
+    dest: "{{ ignite_base_dir }}"
+    mode: '0755'
+    extra_opts: ['--strip-components=1', '--show-stored-names']
+    owner: "{{ ignite_user }}"
+    group: "{{ ignite_group }}"
+    remote_src: yes
+
+- name: Copy content of directory 'files'
+  become: true
+  copy:
+    src: "{{ ignite_optional_libs_dir }}/{{ item }}"
+    dest: "{{ ignite_libs_dir }}"
+    mode: '0755'
+    owner: "{{ ignite_user }}"
+    group: "{{ ignite_group }}"
+  loop: "{{ plugins }}"
+
+- name: Move
+  ansible.builtin.command: mv {{ ignite_optional_libs }} {{ ignite_libs }}
+  loop:
+    - "ignite-zookeeper"
+    - "ignite-log4j2"
+
+- name: copy ignite config file to conf directory
+  become: true
+  ansible.builtin.template:
+    src: "config.xml.j2"
+    dest: "{{ ignite_config_file }}"
+    owner: "{{ ignite_user }}"
+    group: "{{ ignite_group }}"
+    mode: '0644'
+
+- name: copy ignite log file config to conf directory
+  become: true
+  ansible.builtin.template:
+    src: "log4j2.xml.j2"
+    dest: "{{ ignite_log_file }}"
+    owner: "{{ ignite_user }}"
+    group: "{{ ignite_group }}"
+    mode: '0644'
+
+- name: copy ignite service definition file to system directory
+  become: true
+  ansible.builtin.template:
+    src: "ignite.service.j2"
+    dest: "{{ ignite_service_file }}"
+    owner: "{{ ignite_user }}"
+    group: "{{ ignite_group }}"
+    mode: '0644'
+
+- name: reload systemd since we just added a new ignite service
+  become: true
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: enable and start the ignite service
+  become: true
+  ansible.builtin.systemd_service:
+    state: started
+    name: ignite
+    enabled: true
