@@ -39,7 +39,7 @@
     src: "{{ ignite_binary_url }}"
     dest: "{{ ignite_base_dir }}"
     mode: '0755'
-    extra_opts: ['--strip-components=1', '--show-stored-names']
+    extra_opts: ['--strip-components=1']
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
     remote_src: yes
