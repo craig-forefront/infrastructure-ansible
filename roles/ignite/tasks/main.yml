@@ -54,12 +54,6 @@
     group: "{{ ignite_group }}"
   loop: "{{ plugins }}"
 
-- name: Move
-  ansible.builtin.command: mv {{ ignite_optional_libs }} {{ ignite_libs }}
-  loop:
-    - "ignite-zookeeper"
-    - "ignite-log4j2"
-
 - name: copy ignite config file to conf directory
   become: true
   ansible.builtin.template:
