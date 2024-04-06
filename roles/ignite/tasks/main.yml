@@ -31,7 +31,7 @@
     - "{{ ignite_conf_dir }}"
     - "{{ ignite_data_dir }}"
     - "{{ ignite_pid_dir }}"
-    - "{{ ignite_optional_libs }}"
+    - "{{ ignite_optional_libs_dir }}"
 
 - name: rertieve and unarchive ignite
   become: true
