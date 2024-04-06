@@ -24,14 +24,14 @@
     recurse: no
     mode: 0755
   loop:
-    - ignite_base_dir
-    - ignite_snapshots_dir
-    - ignite_work_dir
-    - ignite_log_dir
-    - ignite_conf_dir
-    - ignite_data_dir
-    - ignite_pid_dir
-    - ignite_optional_libs
+    - "{{ ignite_base_dir }}"
+    - "{{ ignite_snapshots_dir }}"
+    - "{{ ignite_work_dir }}"
+    - "{{ ignite_log_dir }}"
+    - "{{ ignite_conf_dir }}"
+    - "{{ ignite_data_dir }}"
+    - "{{ ignite_pid_dir }}"
+    - "{{ ignite_optional_libs }}"
 
 - name: rertieve and unarchive ignite
   become: true
