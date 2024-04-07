@@ -3,18 +3,18 @@
 # code: language=ansible
 - name: Install required packages
   become: true
-  package:
-    name: "{{ install_packages }}"
+  ansible.builtin.package:
+    name: "{{ zookeeper_install_packages }}"
     state: present
   tags:
-    - install_packages
+    - zookeeper_install_packages
 
 - name: Install python packages
   become: true
   ansible.builtin.pip:
-    name: "{{ python_packages }}"
+    name: "{{ zookeeper_python_packages }}"
   tags:
-    - python_packages
+    - zookeeper_python_packages
 
 - name: Ensure user zookeeper exists
   become: true
@@ -24,13 +24,13 @@
 
 - name: Ensure ZooKeeper directories exist
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
     state: directory
-    recurse: no
-    mode: 0755
+    recurse: false
+    mode: "0755"
   loop:
     - "{{ zookeeper_base_dir }}"
     - "{{ zookeeper_conf_dir }}"
@@ -42,7 +42,7 @@
   amazon.aws.s3_object:
     bucket: "{{ binary_bucket }}"
     object: "{{ zookeeper_binary_prefix }}"
-    dest: "/tmp/{{ zookeeper_binary_prefix }}"
+    dest: "/tmp/{{ zookeeper_binary_name }}"
     mode: get
 
 - name: Rertieve and unarchive ZooKeeper
@@ -50,18 +50,18 @@
   ansible.builtin.unarchive:
     src: "/tmp/{{ zookeeper_binary_url }}"
     dest: "{{ zookeeper_base_dir }}"
-    mode: '0755'
+    mode: "0755"
     extra_opts: ['--strip-components=1', '--show-stored-names']
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
-    remote_src: yes
+    remote_src: true
 
 - name: Remove base conf to avoid confusion
   become: true
   ansible.builtin.file:
     path: "{{ zookeeper_base_dir }}/conf"
     state: absent
-    
+
 - name: Copy out ZooKeeper cfg file
   become: true
   ansible.builtin.template:
@@ -71,14 +71,14 @@
     group: "{{ zookeeper_group }}"
     mode: '0644'
 
-- name:  Copy files
+- name: Copy files
   become: true
-  copy:
+  ansible.builtin.copy:
     src: "logback.xml"
     dest: "{{ zookeeper_conf_dir }}/conf"
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
-    mode: '0644'
+    mode: "0644"
 
 - name: Copy ZooKeeper myid file to data directory
   become: true
@@ -87,16 +87,16 @@
     dest: "{{ zookeeper_working_dir }}/myid"
     owner: "{{ zookeeper_user }}"
     group: "{{ zookeeper_group }}"
-    mode: '0644'
+    mode: "0644"
 
 - name: Copy out ZooKeeper service file
   become: true
   ansible.builtin.template:
-    src: zookeeper.service.j2
+    src: "zookeeper.service.j2"
     dest: /usr/lib/systemd/system/zookeeper.service
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
 
 - name: Reload systemd since we just added a new ZooKeeper service
   become: true

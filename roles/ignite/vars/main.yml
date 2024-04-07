@@ -1,9 +1,11 @@
 ---
 # vars file for ignite
+# code: language=ansible
 
 # ignite binary url
-ignite_binary_prefix: "bins/apache-ignite-2.13.0-bin.zip"
-binary_bucket: "tf-backend-craig"
+ignite_binary_name: "apache-ignite-2.13.0-bin.zip"
+ignite_binary_prefix: "bins/"
+ignite_binary_bucket: "tf-backend-craig"
 
 # Directories
 ignite_base_dir: "/opt/ignite"
@@ -17,7 +19,7 @@ ignite_optional_libs_dir: "{{ ignite_base_dir }}/libs/optional"
 ignite_libs_dir: "{{ ignite_base_dir }}/libs"
 
 # plugins
-plugins:
+ignite_plugins:
   - ignite-log4j2
   - ignite-zookeeper
 
@@ -31,11 +33,11 @@ ignite_service_file: "/usr/lib/systemd/system/ignite.service"
 ignite_user: "ignite"
 ignite_group: "ignite"
 
-# required packages 
-install_packages:
+# required packages
+ignite_install_packages:
   - java-11-amazon-corretto
   - python3-pip
 
-python_packages:
+ignite_python_packages:
   - botocore
   - boto3

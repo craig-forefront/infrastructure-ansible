@@ -1,9 +1,11 @@
 ---
 # vars file for zookeeper
+# code: language=ansible
 
 # Zookeeper Binary URL
-zookeeper_binary_prefix: "bins/apache-zookeeper-3.8.4-bin.tar.gz"
-binary_bucket: "tf-backend-craig"
+zookeeper_binary_name: "apache-zookeeper-3.8.4-bin.tar.gz"
+zookeeper_binary_prefix: "bins/{{ zookeeper_binary_name }}"
+zookeeper_binary_bucket: "tf-backend-craig"
 
 # Directories
 zookeeper_base_dir: "/opt/zookeeper"
@@ -23,11 +25,11 @@ zookeeper_group: "zookeeper"
 # ZooKeeper conf settings
 zookeeper_client_port: 2181
 
-# Required packages 
-install_packages:
+# Required packages
+zookeeper_install_packages:
   - java-11-amazon-corretto
   - python3-pip
 
-python_packages:
+zookeeper_python_packages:
   - botocore
   - boto3
