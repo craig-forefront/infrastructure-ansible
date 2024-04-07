@@ -22,8 +22,8 @@
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
     state: directory
-    recurse: no
-    mode: 0755
+    recurse: false
+    mode: "0755"
   loop:
     - "{{ ignite_base_dir }}"
     - "{{ ignite_snapshots_dir }}"
@@ -38,19 +38,19 @@
   become: true
   ansible.builtin.unarchive:
     src: "{{ ignite_binary_url }}"
-    dest: "{{ /tmp }}"
-    mode: '0755'
+    dest: "/tmp"
+    mode: "0755"
     extra_opts: [-j']
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
-    remote_src: yes
+    remote_src: true
 
 - name: Copy content of directory 'files'
   become: true
   ansible.builtin.copy:
     src: "{{ ignite_optional_libs_dir }}/{{ item }}"
     dest: "{{ ignite_libs_dir }}"
-    mode: '0755'
+    mode: "0755"
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
   loop: "{{ plugins }}"
@@ -62,7 +62,7 @@
     dest: "{{ ignite_config_file }}"
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
-    mode: '0644'
+    mode: "0644"
 
 - name: Copy ignite log file config to conf directory
   become: true
@@ -71,7 +71,7 @@
     dest: "{{ ignite_log_file }}"
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
-    mode: '0644'
+    mode: "0644"
 
 - name: Copy ignite service definition file to system directory
   become: true
@@ -80,7 +80,7 @@
     dest: "{{ ignite_service_file }}"
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
-    mode: '0644'
+    mode: "0644"
 
 - name: Reload systemd since we just added a new ignite service
   become: true
