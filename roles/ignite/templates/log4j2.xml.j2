@@ -28,7 +28,7 @@
             <PatternLayout pattern="[%d{ISO8601}][%-5p][%t][%c{1}]%notEmpty{[%markerSimpleName]} %m%n"/>
         </Console>
 
-        <File name="CONSISTENCY" fileName="${sys:IGNITE_LOG_DIR}/work/log/consistency.log">
+        <File name="CONSISTENCY" fileName="${{ ignite_log_dir }}/consistency.log">
             <PatternLayout>
                 <Pattern>"[%d{ISO8601}][%-5p][%t][%c{1}] %m%n"</Pattern>
             </PatternLayout>
@@ -37,8 +37,8 @@
         <Routing name="FILE">
             <Routes pattern="$${sys:nodeId}">
                 <Route>
-                    <RollingFile name="Rolling-${sys:nodeId}" fileName="${sys:IGNITE_LOG_DIR}/work/log/${sys:appId}-${sys:nodeId}.log"
-                                 filePattern="${sys:IGNITE_LOG_DIR}/work/log/${sys:appId}-${sys:nodeId}-%i-%d{yyyy-MM-dd}.log.gz">
+                    <RollingFile name="Rolling-${sys:nodeId}" fileName="{{ ignite_log_dir }}/${sys:appId}-${sys:nodeId}.log"
+                                 filePattern="{{ ignite_log_dir }}/work/log/${sys:appId}-${sys:nodeId}-%i-%d{yyyy-MM-dd}.log.gz">
                         <PatternLayout pattern="[%d{ISO8601}][%-5p][%t][%c{1}]%notEmpty{[%markerSimpleName]} %m%n"/>
                         <Policies>
                             <TimeBasedTriggeringPolicy interval="6" modulate="true" />
