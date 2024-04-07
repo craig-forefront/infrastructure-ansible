@@ -77,7 +77,7 @@
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
     remote_src: true
-  loop: "{{ plugins }}"
+  loop: "{{ ignite_plugins }}"
 
 - name: Copy ignite config file to conf directory
   become: true
