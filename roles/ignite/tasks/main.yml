@@ -43,7 +43,7 @@
   amazon.aws.s3_object:
     bucket: "{{ binary_bucket }}"
     object: "{{ ignite_binary_prefix }}"
-    dest: "/tmp"
+    dest: "/tmp/{{ ignite_binary_prefix }}"
     mode: get
 
 - name: Rertieve and unarchive ignite
