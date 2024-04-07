@@ -38,6 +38,7 @@
     src: "{{ ignite_binary_url }}"
     dest: "/tmp"
     mode: "0755"
+    list_files: true
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
     remote_src: true
@@ -45,12 +46,12 @@
 
 - name: Print debug
   ansible.builtin.debug:
-    var: unzip
+    var: unzip.files[0]
 
 - name: Rename ignite base directory
   become: true
   ansible.builtin.copy:
-    src: "{{ unzip.path }}"
+    src: "{{ unzip.path/unzip.files[0] }}"
     dest: "{{ ignite_base_dir }}"
     mode: "0755"
     owner: "{{ ignite_user }}"
