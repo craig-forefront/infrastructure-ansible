@@ -43,10 +43,14 @@
     remote_src: true
   register: unzip
 
+- name: Print debug
+  ansible.builtin.debug:
+    var: unzip
+
 - name: Rename ignite base directory
   become: true
   ansible.builtin.copy:
-    src: "{{ uzip.path }}"
+    src: "{{ unzip.path }}"
     dest: "{{ ignite_base_dir }}"
     mode: "0755"
     owner: "{{ ignite_user }}"
