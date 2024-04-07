@@ -49,7 +49,7 @@
 - name: Rertieve and unarchive ignite
   become: true
   ansible.builtin.unarchive:
-    src: "/tmp/{{ ignite_binary_prefix }}"
+    src: "/tmp/{{ ignite_binary_name }}"
     dest: "/tmp"
     mode: "0755"
     list_files: true

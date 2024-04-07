@@ -48,7 +48,7 @@
 - name: Rertieve and unarchive ZooKeeper
   become: true
   ansible.builtin.unarchive:
-    src: "/tmp/{{ zookeeper_binary_url }}"
+    src: "/tmp/{{ zookeeper_binary_name }}"
     dest: "{{ zookeeper_base_dir }}"
     mode: "0755"
     extra_opts: ['--strip-components=1', '--show-stored-names']
