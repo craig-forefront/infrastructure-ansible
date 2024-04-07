@@ -22,30 +22,23 @@
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <!--
-        Alter configuration below as needed.
-    -->
-   
+
     <bean id="grid.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
-
+        
         <property name="snapshotPath" value="{{ ignite_snapshots_dir }}"/>
-    
+        
         <property name="workDirectory" value="{{ ignite_work_dir }}"/>
-
+        
         <property name="gridLogger">
             <bean class="org.apache.ignite.logger.log4j2.Log4J2Logger">
-                <!-- log4j2 configuration file -->
                 <constructor-arg type="java.lang.String" value="{{ ignite_log_config_file }}"/>
             </bean>
         </property>
 
         <property name="cacheConfiguration">
             <bean class="org.apache.ignite.configuration.CacheConfiguration">
-                <!-- Set the cache name. -->
                 <property name="name" value="myCache"/>
-                <!-- Set the cache mode. -->
                 <property name="cacheMode" value="PARTITIONED"/>
-                <!-- Other cache parameters. -->
             </bean>
         </property>
         
