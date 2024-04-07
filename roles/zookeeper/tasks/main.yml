@@ -40,8 +40,8 @@
 
 - name: Get archive from S3
   amazon.aws.s3_object:
-    bucket: "{{ ignite_binary_bucket }}"
-    object: "{{ zookeeper_binary_prefix }}"
+    bucket: "{{ zookeeper_binary_bucket }}"
+    object: "{{ zookeeper_binary_prefix }}{{ zookeeper_binary_name }}"
     dest: "/tmp/{{ zookeeper_binary_name }}"
     mode: get
 

@@ -4,7 +4,7 @@
 
 # Zookeeper Binary URL
 zookeeper_binary_name: "apache-zookeeper-3.8.4-bin.tar.gz"
-zookeeper_binary_prefix: "bins/{{ zookeeper_binary_name }}"
+zookeeper_binary_prefix: "bins/"
 zookeeper_binary_bucket: "tf-backend-craig"
 
 # Directories
