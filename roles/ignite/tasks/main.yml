@@ -41,7 +41,7 @@
 
 - name: Get archive from S3
   amazon.aws.s3_object:
-    bucket: "{{ binary_bucket }}"
+    bucket: "{{ ignite_binary_bucket }}"
     object: "{{ ignite_binary_prefix }}"
     dest: "/tmp/{{ ignite_binary_name }}"
     mode: get
