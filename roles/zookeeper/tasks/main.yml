@@ -1,5 +1,6 @@
 ---
 # tasks file for zookeeper
+# code: language=ansible
 - name: Install required packages
   become: true
   package:
@@ -30,10 +31,17 @@
     - "{{ zookeeper_log_dir }}"
     - "{{ zookeeper_working_dir }}"
 
+- name: Get archive from S3
+  amazon.aws.s3_object:
+    bucket: "{{ binary_bucket }}"
+    object: "{{ zookeeper_binary_prefix }}"
+    dest: "/tmp"
+    mode: get
+
 - name: Rertieve and unarchive ZooKeeper
   become: true
   ansible.builtin.unarchive:
-    src: "{{ zookeeper_binary_url }}"
+    src: "/tmp/{{ zookeeper_binary_url }}"
     dest: "{{ zookeeper_base_dir }}"
     mode: '0755'
     extra_opts: ['--strip-components=1', '--show-stored-names']

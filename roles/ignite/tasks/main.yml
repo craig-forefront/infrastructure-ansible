@@ -32,10 +32,17 @@
     - "{{ ignite_data_dir }}"
     - "{{ ignite_pid_dir }}"
 
+- name: Get archive from S3
+  amazon.aws.s3_object:
+    bucket: "{{ binary_bucket }}"
+    object: "{{ ignite_binary_prefix }}"
+    dest: "/tmp"
+    mode: get
+
 - name: Rertieve and unarchive ignite
   become: true
   ansible.builtin.unarchive:
-    src: "{{ ignite_binary_url }}"
+    src: "/tmp/{{ ignite_binary_prefix }}"
     dest: "/tmp"
     mode: "0755"
     list_files: true

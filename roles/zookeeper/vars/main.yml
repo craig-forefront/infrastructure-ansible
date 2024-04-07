@@ -2,7 +2,8 @@
 # vars file for zookeeper
 
 # Zookeeper Binary URL
-zookeeper_binary_url: "https://tf-backend-craig.s3.us-east-2.amazonaws.com/bins/apache-zookeeper-3.8.4-bin.tar.gz"
+zookeeper_binary_prefix: "bins/apache-zookeeper-3.8.4-bin.tar.gz"
+binary_bucket: "tf-backend-craig"
 
 # Directories
 zookeeper_base_dir: "/opt/zookeeper"
