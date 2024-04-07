@@ -9,6 +9,13 @@
   tags:
     - install_packages
 
+- name: Install python packages
+  become: true
+  ansible.builtin.pip:
+    name: "{{ python_modules }}"
+  tags:
+    - python_modules
+
 - name: Ensure user zookeeper exists
   become: true
   ansible.builtin.user:
