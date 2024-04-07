@@ -25,14 +25,12 @@
     recurse: false
     mode: "0755"
   loop:
-    - "{{ ignite_base_dir }}"
     - "{{ ignite_snapshots_dir }}"
     - "{{ ignite_work_dir }}"
     - "{{ ignite_log_dir }}"
     - "{{ ignite_conf_dir }}"
     - "{{ ignite_data_dir }}"
     - "{{ ignite_pid_dir }}"
-    - "{{ ignite_optional_libs_dir }}"
 
 - name: Rertieve and unarchive ignite
   become: true
@@ -44,6 +42,16 @@
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
     remote_src: true
+    register: unzip
+
+- name: Rename ignite base directory
+  become: true
+  ansible.builtin.copy:
+    src: {{ uzip.path }}
+    dest: {{ ignite_base_dir }}
+    mode: "0755"
+    owner: "{{ ignite_user }}"
+    group: "{{ ignite_group }}"
 
 - name: Copy content of directory 'files'
   become: true
