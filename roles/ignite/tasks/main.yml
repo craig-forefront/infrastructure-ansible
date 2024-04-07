@@ -78,7 +78,7 @@
   become: true
   ansible.builtin.template:
     src: "log4j2.xml.j2"
-    dest: "{{ ignite_log_file }}"
+    dest: "{{ ignite_log_config_file }}"
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
     mode: "0644"

@@ -23,7 +23,7 @@ plugins:
 # files
 ignite_config_file: "{{ ignite_conf_dir }}/config.xml"
 ignite_pid_file: "{{ ignite_pid_dir }}/ignite.pid"
-ignite_log_file: "{{ ignite_conf_dir }}/conf/log4j2-config.xml"
+ignite_log_config_file: "{{ ignite_conf_dir }}/log4j2-config.xml"
 ignite_service_file: "/usr/lib/systemd/system/ignite.service"
 
 # kafa user/group
