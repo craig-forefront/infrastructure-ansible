@@ -42,7 +42,7 @@
     owner: "{{ ignite_user }}"
     group: "{{ ignite_group }}"
     remote_src: true
-    register: unzip
+  register: unzip
 
 - name: Rename ignite base directory
   become: true
