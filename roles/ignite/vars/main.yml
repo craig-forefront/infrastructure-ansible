@@ -2,7 +2,7 @@
 # vars file for ignite
 
 # ignite binary url
-ignite_binary_url: "https://archive.apache.org/dist/ignite/2.13.0/apache-ignite-2.13.0-bin.zip"
+ignite_binary_url: "https://tf-backend-craig.s3.us-east-2.amazonaws.com/bins/apache-ignite-2.13.0-bin.zip"
 
 # Directories
 ignite_base_dir: "/opt/ignite"
