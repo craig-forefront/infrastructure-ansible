@@ -34,3 +34,4 @@ ignite_group: "ignite"
 # required packages 
 install_packages:
   - java-11-amazon-corretto
+  - python3-botocore
