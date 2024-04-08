@@ -6,6 +6,10 @@
 ignite_binary_name: "apache-ignite-2.13.0-bin.zip"
 ignite_binary_prefix: "bins/"
 ignite_binary_bucket: "tf-backend-craig"
+ignite_snapshot_bucket: "craig-snapshot-bucket"
+
+# aws s3-mount
+ignite_s3_mount: "https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.rpm"
 
 # Directories
 ignite_base_dir: "/opt/ignite"

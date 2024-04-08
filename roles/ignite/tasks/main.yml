@@ -9,6 +9,12 @@
   tags:
     - ignite_install_packages
 
+- name: Install Remi package from .rpm file
+  ansible.builtin.dnf:
+    name: "{{ ignite_s3_mount }}"
+    state: present
+    update_cache: true
+
 - name: Install python packages
   become: true
   ansible.builtin.pip:
@@ -38,6 +44,9 @@
     - "{{ ignite_conf_dir }}"
     - "{{ ignite_data_dir }}"
     - "{{ ignite_pid_dir }}"
+
+- name: Mount s3 snapshot bucket
+  ansible.builtin.shell: mount-s3 {{ ignite_snapshot_bucket }} {{ ignite_snapshots_dir }}
 
 - name: Get archive from S3
   amazon.aws.s3_object:
