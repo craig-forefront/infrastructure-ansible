@@ -31,10 +31,6 @@
     shell: /bin/bash
   register: user_info
 
-- name: Debug
-  ansible.builtin.debug:
-    var: user_info
-
 - name: Ensure ignite directories exist
   become: true
   ansible.builtin.file:
