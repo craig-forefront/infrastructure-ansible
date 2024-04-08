@@ -15,6 +15,7 @@
     name: "{{ ignite_s3_mount }}"
     state: present
     update_cache: true
+    disable_gpg_check: true
 
 - name: Install python packages
   become: true
