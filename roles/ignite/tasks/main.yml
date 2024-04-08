@@ -48,9 +48,9 @@
     - "{{ ignite_data_dir }}"
     - "{{ ignite_pid_dir }}"
 
-- name: Mount s3 snapshot bucket
-  become: true
-  ansible.builtin.shell: mount-s3 {{ ignite_snapshot_bucket }} {{ ignite_snapshots_dir }} --uid {{ user_info.uid }} --gid {{ user_info.group }}
+# - name: Mount s3 snapshot bucket
+#   become: true
+#   ansible.builtin.shell: mount-s3 {{ ignite_snapshot_bucket }} {{ ignite_snapshots_dir }} --uid {{ user_info.uid }} --gid {{ user_info.group }}
 
 - name: Get archive from S3
   amazon.aws.s3_object:
