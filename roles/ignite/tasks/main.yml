@@ -29,8 +29,7 @@
   ansible.builtin.user:
     name: "{{ ignite_user }}"
     shell: /bin/bash
-  register:
-    user_info
+  register: user_info
 
 - name: Ensure ignite directories exist
   become: true
