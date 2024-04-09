@@ -63,6 +63,14 @@
     state: mounted
     fstype: efs
 
+- name: Set snaphosts perms
+  ansible.builtin.file:
+    path: "{{ ignite_snapshots_dir }}"
+    owner: "{{ ignite_user }}"
+    group: "{{ ignite_group }}"
+    mode: "0755"
+    recurse: true
+
 - name: Rertieve and unarchive ignite
   become: true
   ansible.builtin.unarchive:
