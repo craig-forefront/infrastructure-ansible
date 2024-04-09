@@ -10,7 +10,7 @@ ignite_snapshot_bucket: "craig-snapshot-bucket"
 
 # aws s3-mount
 ignite_s3_mount: "https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.rpm"
-ignite_efs_id: "fs-0568d3403bce7eb7c"
+ignite_efs_id: "fs-02bea13ef60be95c8"
 
 # Directories
 ignite_base_dir: "/opt/ignite"
