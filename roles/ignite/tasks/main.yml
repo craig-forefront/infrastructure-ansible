@@ -48,16 +48,19 @@
     - "{{ ignite_data_dir }}"
     - "{{ ignite_pid_dir }}"
 
-# - name: Mount s3 snapshot bucket
-#   become: true
-#   ansible.builtin.shell: mount-s3 {{ ignite_snapshot_bucket }} {{ ignite_snapshots_dir }} --uid {{ user_info.uid }} --gid {{ user_info.group }}
-
 - name: Get archive from S3
   amazon.aws.s3_object:
     bucket: "{{ ignite_binary_bucket }}"
     object: "{{ ignite_binary_prefix }}{{ ignite_binary_name }}"
     dest: "/tmp/{{ ignite_binary_name }}"
     mode: get
+
+- name: Mount EFS Snapshot directory
+  ansible.posix.mount:
+    src: "{{ ignite_efs_id }}"
+    path: "{{ ignite_snapshots_dir }}"
+    state: mounted
+    fstype: efs
 
 - name: Rertieve and unarchive ignite
   become: true

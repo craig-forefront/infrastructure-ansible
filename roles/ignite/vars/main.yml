@@ -10,6 +10,7 @@ ignite_snapshot_bucket: "craig-snapshot-bucket"
 
 # aws s3-mount
 ignite_s3_mount: "https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.rpm"
+ignite_efs_id: "fs-0568d3403bce7eb7c"
 
 # Directories
 ignite_base_dir: "/opt/ignite"
@@ -41,6 +42,7 @@ ignite_group: "ignite"
 ignite_install_packages:
   - java-11-amazon-corretto
   - python3-pip
+  - amazon-efs-utils
 
 ignite_python_packages:
   - botocore
