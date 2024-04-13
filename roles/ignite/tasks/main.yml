@@ -47,6 +47,8 @@
     - "{{ ignite_conf_dir }}"
     - "{{ ignite_data_dir }}"
     - "{{ ignite_pid_dir }}"
+    - "{{ ignite_efs_snapshot_dir }}"
+    - "{{ ignite_s3_snapshot_dir }}"
 
 - name: Get archive from S3
   amazon.aws.s3_object:
@@ -59,7 +61,7 @@
   become: true
   ansible.posix.mount:
     src: "{{ ignite_efs_id }}"
-    path: "{{ ignite_snapshots_dir }}"
+    path: "{{ ignite_efs_snapshot_dir }}"
     state: mounted
     fstype: efs
 

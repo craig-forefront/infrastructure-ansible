@@ -15,6 +15,8 @@ ignite_efs_id: "fs-02bea13ef60be95c8"
 # Directories
 ignite_base_dir: "/opt/ignite"
 ignite_snapshots_dir: "/opt/snapshots"
+ignite_efs_snapshot_dir: "/opt/efs-write-snapshots"
+ignite_s3_snapshot_dir: "/opt/efs-s3-snapshots"
 ignite_work_dir: "{{ ignite_base_dir }}/work"
 ignite_log_dir: "/var/log/ignite"
 ignite_conf_dir: "/etc/ignite/conf"
