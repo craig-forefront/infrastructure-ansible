@@ -39,6 +39,7 @@
             <bean class="org.apache.ignite.configuration.CacheConfiguration">
                 <property name="name" value="myCache"/>
                 <property name="cacheMode" value="PARTITIONED"/>
+                <property name="backups" value="2"/>
             </bean>
         </property>
         
