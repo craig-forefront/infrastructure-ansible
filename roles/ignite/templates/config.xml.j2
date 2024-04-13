@@ -25,8 +25,10 @@
 
     <bean id="grid.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
         
-        <property name="snapshotPath" value="{{ ignite_snapshots_dir }}"/>
+        <property name="igniteInstanceName" value="source" />
+        <property name="consistentId" value="source" />
         
+        <property name="snapshotPath" value="{{ ignite_snapshots_dir }}"/>
         <property name="workDirectory" value="{{ ignite_work_dir }}"/>
         
         <property name="gridLogger">
@@ -42,7 +44,15 @@
                 <property name="backups" value="2"/>
             </bean>
         </property>
-        
+    
+        <!-- Enable cache events. -->
+        <property name="includeEventTypes">
+            <list>
+                <!-- Cache events. -->
+                <util:constant static-field="org.apache.ignite.events.EventType.EVT_CACHE_OBJECT_PUT"/>
+            </list>
+        </property>
+
         <property name="dataStorageConfiguration">
             <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
                 <property name="defaultDataRegionConfiguration">
