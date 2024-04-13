@@ -25,9 +25,6 @@
 
     <bean id="grid.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
         
-        <property name="igniteInstanceName" value="source" />
-        <property name="consistentId" value="source" />
-        
         <property name="snapshotPath" value="{{ ignite_snapshots_dir }}"/>
         <property name="workDirectory" value="{{ ignite_work_dir }}"/>
         
