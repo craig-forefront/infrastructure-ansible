@@ -45,14 +45,6 @@
             </bean>
         </property>
     
-        <!-- Enable cache events. -->
-        <property name="includeEventTypes">
-            <list>
-                <!-- Cache events. -->
-                <util:constant static-field="org.apache.ignite.events.EventType.EVT_CACHE_OBJECT_PUT"/>
-            </list>
-        </property>
-
         <property name="dataStorageConfiguration">
             <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
                 <property name="defaultDataRegionConfiguration">
