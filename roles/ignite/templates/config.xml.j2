@@ -27,31 +27,34 @@
         
         <property name="snapshotPath" value="{{ ignite_snapshots_dir }}"/>
         <property name="workDirectory" value="{{ ignite_work_dir }}"/>
-        
-        <property name="gridLogger">
-            <bean class="org.apache.ignite.logger.log4j2.Log4J2Logger">
-                <constructor-arg type="java.lang.String" value="{{ ignite_log_config_file }}"/>
-            </bean>
-        </property>
-
-        <property name="cacheConfiguration">
-            <bean class="org.apache.ignite.configuration.CacheConfiguration">
-                <property name="name" value="myCache"/>
-                <property name="cacheMode" value="PARTITIONED"/>
-                <property name="backups" value="2"/>
-            </bean>
-        </property>
+        <property name="peerClassLoadingEnabled" value="true"/>
+        <property name="deploymentMode" value="CONTINUOUS"/>
+    </bean>
     
-        <property name="dataStorageConfiguration">
-            <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
-                <property name="defaultDataRegionConfiguration">
-                    <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
-                        <property name="persistenceEnabled" value="true"/>
-                    </bean>
-                </property>
-            </bean>
-        </property>
-        
+    <property name="gridLogger">
+        <bean class="org.apache.ignite.logger.log4j2.Log4J2Logger">
+            <constructor-arg type="java.lang.String" value="{{ ignite_log_config_file }}"/>
+        </bean>
+    </property>
+
+    <property name="cacheConfiguration">
+        <bean class="org.apache.ignite.configuration.CacheConfiguration">
+            <property name="name" value="myCache"/>
+            <property name="cacheMode" value="PARTITIONED"/>
+            <property name="backups" value="2"/>
+        </bean>
+    </property>
+
+    <property name="dataStorageConfiguration">
+        <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
+            <property name="defaultDataRegionConfiguration">
+                <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+                    <property name="persistenceEnabled" value="true"/>
+                </bean>
+            </property>
+        </bean>
+    </property>
+    
         <property name="discoverySpi">
             <bean class="org.apache.ignite.spi.discovery.zk.ZookeeperDiscoverySpi">
                 <property name="zkConnectionString" value="{% for host in groups['zookeeper']  %}

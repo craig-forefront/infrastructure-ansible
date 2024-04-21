@@ -45,6 +45,7 @@ ignite_install_packages:
   - java-11-amazon-corretto
   - python3-pip
   - amazon-efs-utils
+  - mdadm
 
 ignite_python_packages:
   - botocore
