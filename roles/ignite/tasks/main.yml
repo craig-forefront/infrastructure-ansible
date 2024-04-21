@@ -9,23 +9,6 @@
   tags:
     - ignite_install_packages
 
-- name: Create striped volume
-  become: true
-  mrlesmithjr.ansible-mdadm:
-    mdadm_arrays:
-      - name: 'md0'
-        devices:
-          - '/dev/xvdd'
-          - '/dev/xvde'
-          - '/dev/xvdf'
-          - '/dev/xvdg'
-        filesystem: 'xfs'
-        filesystem_opts: ''
-        level: '0'
-        mountpoint: '/mnt/md0'
-        state: 'present'
-        opts: 'noatime'
-
 - name: Install mount-s3 package from .rpm file
   become: true
   ansible.builtin.dnf:
