@@ -9,10 +9,6 @@
   tags:
     - ignite_install_packages
 
-- name: Include the example role
-  include_role:
-    name: mrlesmithjr.ansible-mdadm
-
 - name: Create striped volume
   become: true
   mrlesmithjr.ansible-mdadm:
